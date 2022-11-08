@@ -5,9 +5,16 @@ def lines_to_dict(text):
     dictionary=list()
     for string in text:
         dictionary+=string.split(" ")
-    filtered = filter(lambda word: len(word) > 2, dictionary)
+    return(filter_and_sort(dictionary))
+
+def string_to_dict(string):
+    dictionary=string.split(" ")
+    return(filter_and_sort(dictionary))
+
+def filter_and_sort(in_list):
+    filtered = filter(lambda word: len(word) > 2, in_list)
     dictionary = list(filtered)
-    maped = map(lambda word: (re.sub("[^A-Za-z]", 
+    maped = map(lambda word: (re.sub("[^A-Za-zА-Яа-яáéíñóúüÁÉÍÑÓÚÜ'\-]", 
                 "", word)).lower(), dictionary)
     dictionary = list(maped)
     dictionary.sort()
@@ -21,6 +28,11 @@ def test():
     lines.append('convert a list of string')
     lines.append('into a dictionary(list of words)')
     print(lines_to_dict(lines))
+
+def test_string():
+    text = 'я пишу какой-то текст в этой строке'
+    print(string_to_dict(text))
+
 
 if __name__=='__main__':
     test()

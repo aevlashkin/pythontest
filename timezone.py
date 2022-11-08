@@ -12,9 +12,7 @@ def list_time():
 
 def next_time(hour, delta, town):
     result = hour + (0 if hour >= delta else 24) - delta
-    
     add_zero = ' ' if result > 9 else ' 0'
-    
     return (town + add_zero + str(result) + ':00;')
 
 time = list_time()
